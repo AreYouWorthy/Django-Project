@@ -39,7 +39,7 @@ class QuestionModelTests(TestCase):
         """
         Create a question with the given `question_text` and published the
         given number of `days` offset to now (negative for questions published
-        in the past, positive for questions that have yet to be published).
+       in the past, positive for questions that have yet to be published).
         """
         time = timezone.now() + datetime.timedelta(days=days)
         return Question.objects.create(question_text=question_text, pub_date=time)
@@ -47,7 +47,7 @@ class QuestionModelTests(TestCase):
 class QuestionIndexViewTests(TestCase):
     def test_no_questions(self):
         """
-        If no question exist, an appropriate message is displayed.
+        If no questions exist, an appropriate message is displayed.
         """
         response = self.client.get(reverse('polls:index'))
         self.assertEqual(response.status_code, 200)
@@ -78,7 +78,7 @@ class QuestionIndexViewTests(TestCase):
 
     def test_future_question_and_past_question(self):
         """
-        Even if both past and future question exist, only past questions
+        Even if both past and future questions exist, only past questions
         are displayed.
         """
         create_question(question_text="Past question.", days=-30)
